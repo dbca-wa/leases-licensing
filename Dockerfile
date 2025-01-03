@@ -117,7 +117,7 @@ RUN --mount=type=cache,target=~/.cache/pypoetry/cache poetry install --only main
 
 FROM python_dependencies_leaseslicensing as collect_static_leaseslicensing
 
-COPY --chown=oim:oim gunicorn.ini.py manage.py manage.sh ./
+COPY --chown=oim:oim gunicorn.ini.py manage.py manage.sh python-cron ./
 COPY --chown=oim:oim leaseslicensing ./leaseslicensing
 COPY --chown=oim:oim .git ./.git
 
