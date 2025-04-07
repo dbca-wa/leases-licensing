@@ -8,7 +8,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
-Django = "^5.0.13"
+Django = "^5.2"
 django-confy = "^1.0" # old
 dj-database-url = "^0.5" # old
 django_countries = "^7.3"
@@ -59,7 +59,7 @@ django5_six = {git = "https://github.com/dbca-wa/django5-utils-six.git", rev="ma
 numpy = "1.26.4"
 django-vite = "^3.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^4.4"
 ipdb = "^0.13"
 pylint = "^2.13"
