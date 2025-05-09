@@ -19,7 +19,7 @@ python_dateutil = "^2.8"
 pytz = "^2020.1"
 reportlab = "^3.5"
 requests = "^2.3"
-setuptools = "^73.0"
+setuptools = "^80.3"
 six = "^1.0"
 # git+https://github.com/xzzy/webtemplate.git#egg=webtemplate_dbca
 webtemplate_dbca = {git = "https://github.com/dbca-wa/webtemplate2.git", rev = "master"}
