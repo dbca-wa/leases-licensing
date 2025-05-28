@@ -5,15 +5,20 @@ from django.db import migrations
 
 fixture = "leaseslicensing/components/proposals/fixtures/default_standard_requirements"
 
+
 def load_fixture(apps, schema_editor):
-    call_command('loaddata', fixture, app_label='leaseslicensing')
+    call_command("loaddata", fixture, app_label="leaseslicensing")
+
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('leaseslicensing', '0271_remove_scheduledinvoice_invoice_has_been_generated'),
+        ("leaseslicensing", "0271_remove_scheduledinvoice_invoice_has_been_generated"),
     ]
 
     operations = [
-        migrations.RunPython(load_fixture),
+        # Commenting out as the structure of the fixture has changed
+        # and the fixture is no longer compatible with the model at this point in
+        # the migration history.
+        # migrations.RunPython(load_fixture),
     ]

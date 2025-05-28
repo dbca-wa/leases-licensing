@@ -12,6 +12,7 @@ leaseslicensing/cache/*
 .devcontainer/*
 !.devcontainer/devcontainer.json
 nohup.out
+.python-version
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

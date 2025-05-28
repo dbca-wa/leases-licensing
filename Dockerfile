@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1.2
 
 # Prepare the base environment.
-FROM ubuntu:24.04 as builder_base_oim_leaseslicensing
+FROM ubuntu:24.04 AS builder_base_oim_leaseslicensing
 
 LABEL maintainer="asi@dbca.wa.gov.au"
 LABEL org.opencontainers.image.source="https://github.com/dbca-wa/leases-licensing"
@@ -19,10 +19,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     SITE_DOMAIN='dbca.wa.gov.au' \
     OSCAR_SHOP_NAME='Parks & Wildlife' \
     BPAY_ALLOWED=False \
-    POETRY_VERSION=2.1.2 \
-    NODE_MAJOR=20
+    POETRY_VERSION=2.1.3 \
+    NODE_MAJOR=22
 
-FROM builder_base_oim_leaseslicensing as apt_packages_leaseslicensing
+FROM builder_base_oim_leaseslicensing AS apt_packages_leaseslicensing
 
 # Use Australian Mirrors
 RUN sed 's/archive.ubuntu.com/au.archive.ubuntu.com/g' /etc/apt/sources.list > /etc/apt/sourcesau.list && \
@@ -72,9 +72,9 @@ RUN --mount=type=cache,target=/var/cache/apt apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     update-ca-certificates
 
-FROM apt_packages_leaseslicensing as node_leaseslicensing
+FROM apt_packages_leaseslicensing AS node_leaseslicensing
 
-# install node 20
+# install node 22
 RUN mkdir -p /etc/apt/keyrings && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" \
@@ -82,11 +82,10 @@ RUN mkdir -p /etc/apt/keyrings && \
     apt-get update && \
     apt-get install -y nodejs
 
-FROM node_leaseslicensing as configure_leaseslicensing
+FROM node_leaseslicensing AS configure_leaseslicensing
 
 COPY startup.sh  /
 
-COPY ./timezone /etc/timezone
 RUN chmod 755 /startup.sh && \
     chmod +s /startup.sh && \
     groupadd -g 5000 oim && \
@@ -101,7 +100,7 @@ RUN chmod 755 /startup.sh && \
     /tmp/default_script_installer.sh && \
     rm -rf /tmp/*
 
-FROM configure_leaseslicensing as python_dependencies_leaseslicensing
+FROM configure_leaseslicensing AS python_dependencies_leaseslicensing
 
 WORKDIR /app
 USER oim
@@ -115,39 +114,20 @@ RUN poetry completions bash > ~/.bash_completion && \
     poetry run pip install --upgrade pip
 RUN --mount=type=cache,target=~/.cache/pypoetry/cache poetry install --only main --no-interaction --no-ansi
 
-# The following patches must be applied for seggregated systems when setting up a new environment (i.e. local, dev, uat, prod)
-#
-# COPY --chown=oim:oim admin.patch.additional
-# (local) patch <path of leaseslicensing project>/.venv/lib/<python version>/site-packages/django/contrib/admin/migrations/0001_initial.py admin.patch.additional
-# RUN export virtual_env_path=$(poetry env info -p); \
-#     export python_version=$(python -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))'); \
-#     patch $virtual_env_path/lib/python$python_version/site-packages/django/contrib/admin/migrations/0001_initial.py admin.patch.additional
-
-# COPY --chown=oim:oim 0001_squashed_0004_auto_20160611_1202.patch
-# (local) patch <path of leaseslicensing project>/.venv/lib/<python version>/site-packages/reversion/migrations/0001_initial.py 0001_squashed_0004_auto_20160611_1202.patch
-# RUN export virtual_env_path=$(poetry env info -p); \
-#     export python_version=$(python -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))'); \
-#     patch $virtual_env_path/lib/python$python_version/site-packages/reversion/migrations/0001_squashed_0004_auto_20160611_1202.py 0001_squashed_0004_auto_20160611_1202.patch
-#
-# RUN poetry run python manage.py migrate
-#
-# after running django migrations the patch can be reversed with:
-# RUN patch -r $virtual_env_path/lib/python$python_version/site-packages/reversion/migrations/0001_squashed_0004_auto_20160611_1202.py 0001_squashed_0004_auto_20160611_1202.patch
-
-FROM python_dependencies_leaseslicensing as install_build_vue3_leaseslicensing
+FROM python_dependencies_leaseslicensing AS install_build_vue3_leaseslicensing
 
 COPY --chown=oim:oim leaseslicensing ./leaseslicensing
 
 RUN cd /app/leaseslicensing/frontend/leaseslicensing ; npm ci --omit=dev && \
     cd /app/leaseslicensing/frontend/leaseslicensing ; npm run build
 
-FROM install_build_vue3_leaseslicensing as collect_static_leaseslicensing
+FROM install_build_vue3_leaseslicensing AS collect_static_leaseslicensing
 
 COPY --chown=oim:oim manage.py manage.sh ./
 RUN touch /app/.env && \
     poetry run python manage.py collectstatic --no-input
 
-FROM collect_static_leaseslicensing as launch_leaseslicensing
+FROM collect_static_leaseslicensing AS launch_leaseslicensing
 
 COPY --chown=oim:oim gunicorn.ini.py python-cron ./
 EXPOSE 8080

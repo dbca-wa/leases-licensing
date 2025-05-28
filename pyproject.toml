@@ -1,3 +1,7 @@
+[project]
+name = "leases-licensing"
+requires-python = ">=3.12"
+
 [tool.poetry]
 name = "leases-licensing"
 version = "1.0.0"
@@ -7,65 +11,66 @@ license = "Apache-2.0"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.10"
-Django = "^5.2"
-django-confy = "^1.0" # old
-dj-database-url = "^0.5" # old
+# git+https://github.com/dbca-wa/dbca-utils@1.1.1#egg=dbca-utils
+# git+https://github.com/xzzy/ledger_api_client.git#egg=ledger_api_client
+# git+https://github.com/xzzy/webtemplate.git#egg=webtemplate_dbca
+appmonitor_client = {git = "https://github.com/dbca-wa/appmonitor_client.git", rev="main"}
+babel = "^2.10"
+dbca-utils = {git = "https://github.com/dbca-wa/dbca-utils.git", rev = "1.1.1"}
+dj-database-url = "^2.3"
+django = "^5.2.1"
 django_countries = "^7.3"
+django_media_serv = {git = "https://github.com/dbca-wa/django-media-serv.git", rev="main"}
+django-ckeditor = "^6.0"
+django-confy = "^1.0" # old
+django-cron = {git = "https://github.com/dbca-wa/django-cron.git", rev="master"}
+django-dirtyfields = "^1.8"
+django-extensions = "^4.1"
+django-filter = "^24.3" # Currently constrained to 3.15 due to djangorestframework-gis
+django-phonenumber-field = "^8.1"
 django-reversion = "^5.0"
-django-reversion-compare = "^0.15"
-geojson = "^2.5"
+django-reversion-compare = "^0.18"
+django-utils-six = "^2.0" # old
+django-vite = "^3.0"
+django-widget-tweaks = "^1.4"
+django5_six = {git = "https://github.com/dbca-wa/django5-utils-six.git", rev="master"}
+djangorestframework = "^3.15" # Currently constrained to 3.15 due to djangorestframework-gis
+djangorestframework-datatables = "^0.7"
+djangorestframework-gis = "1.1"
+drf-standardized-errors = "^0.14"
+geojson = "^3.2"
+geopandas = "^1.0"
+gunicorn = "^23.0"
+ipython = "^9.2"
+ledger_api_client = {git = "https://github.com/dbca-wa/ledger_api_client.git"}
+numpy = "^2.2"
+openpyxl = "^3.0"
+pandas = "^2.2"
+phonenumbers = "^9.0"
+pre-commit = "^4.2"
+psycopg2-binary = "^2.0"
+python = "^3.12"
 python_dateutil = "^2.8"
-pytz = "^2020.1"
-reportlab = "^3.5"
+python-decouple = "^3.8"
+python-docx = "^1.1"
+pytz = "^2025.2"
+reportlab = "^4.4"
 requests = "^2.3"
+sentry-sdk = "^2.29"
 setuptools = "^80.3"
 six = "^1.0"
-# git+https://github.com/xzzy/webtemplate.git#egg=webtemplate_dbca
-webtemplate_dbca = {git = "https://github.com/dbca-wa/webtemplate2.git", rev = "master"}
+tomli = "^2.0"
 wagov_utils = {git = "https://github.com/dbca-wa/wagov_utils.git"}
-# git+https://github.com/dbca-wa/dbca-utils@1.1.1#egg=dbca-utils
-dbca-utils = {git = "https://github.com/dbca-wa/dbca-utils.git", rev = "1.1.1"}
-psycopg2-binary = "^2.0"
-django-extensions = "^3.1"
-# git+https://github.com/xzzy/ledger_api_client.git#egg=ledger_api_client
-ledger_api_client = {git = "https://github.com/dbca-wa/ledger_api_client.git"}
+webtemplate_dbca = {git = "https://github.com/dbca-wa/webtemplate2.git", rev = "master"}
 whitenoise = "^6.0"
-djangorestframework = "^3.14"
-djangorestframework-gis = "1.0"
-openpyxl = "^3.0"
-django-ckeditor = "^6.0"
-django-widget-tweaks = "^1.4"
-djangorestframework-datatables = "^0.7"
-django-utils-six = "^2.0" # old
-django-phonenumber-field = "^6.1"
-phonenumbers = "^8.12"
-babel = "^2.10"
-django-dirtyfields = "^1.8"
-django_media_serv = {git = "https://github.com/dbca-wa/django-media-serv.git", rev="main"}
-pandas = "1.5.2"
-geopandas = "^0.14"
-python-docx = "^0.8"
-gunicorn = "^23.0"
-drf-standardized-errors = "^0.12"
-pre-commit = "^3.4.0"
-python-decouple = "^3.8"
-appmonitor_client = {git = "https://github.com/dbca-wa/appmonitor_client.git", rev="main"}
-ipython = "^8.15"
-django-cron = {git = "https://github.com/jorenham/django-cron.git", rev="master"}
-tomli = "^2.0.1"
-sentry-sdk = "^2.19"
-django5_six = {git = "https://github.com/dbca-wa/django5-utils-six.git", rev="master"}
-numpy = "1.26.4"
-django-vite = "^3.0"
 
 [tool.poetry.group.dev.dependencies]
-django-debug-toolbar = "^4.4"
+django-debug-toolbar = "^5.2"
 ipdb = "^0.13"
-pylint = "^2.13"
-flake8 = "^6.1"
-autopep8 = "^2.0"
-black = "^23.0"
+pylint = "^3.3.7"
+flake8 = "^7.2"
+autopep8 = "^2.3.2"
+black = "^25.1"
 
 [build-system]
 requires = ["poetry_core>=1.1.13"]
