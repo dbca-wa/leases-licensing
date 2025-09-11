@@ -24,3 +24,6 @@
 
 # Required for appmonitor_client
 */5 * * * * cd /app && ./manage.sh runcrons >> logs/cronjob.log 2>&1
+
+# Log Rotate
+1 0 * * *  /bin/log_rotate.sh  >> /app/logs/log_rotate.log 2>&1
