@@ -18,7 +18,7 @@ appmonitor_client = {git = "https://github.com/dbca-wa/appmonitor_client.git", r
 babel = "^2.10"
 dbca-utils = {git = "https://github.com/dbca-wa/dbca-utils.git", rev = "1.1.1"}
 dj-database-url = "^2.3"
-django = "^5.2.3"
+django = "^5.2.6"
 django_countries = "^7.3"
 django_media_serv = {git = "https://github.com/dbca-wa/django-media-serv.git", rev="main"}
 django-ckeditor = "^6.0"
