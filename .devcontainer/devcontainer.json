@@ -1,26 +1,53 @@
 {
-  "name": "Leases Licensing",
-  "image": "dbcawa/docker_app_dev:leaseslicensing_dev_latest",
-  "remoteUser": "container",
-  "workspaceFolder": "/data/data/projects/leases-licensing",
-  "mounts": ["type=bind,source=/data/,target=/data/",
-             "type=bind,source=/data/data/containerhome/,target=/home/container/"
-            ],
-  "appPort": [ "7008:8080", "9071:9071", "9072:9072", "9073:9073", "9074:9074", "9075:9075", "9076:9076", "9077:9077","9078:9078","9079:9079", "9080:9080"],
-  "runArgs": ["--env-file","${localEnv:HOME}/vscode-env/leaseslicensing.env",
-              "--hostname","leaseslicensing-dev"
-],
-  "customizations": {
-      "vscode": {
-        "extensions": ["ms-python.python",
-                      "vue.volar",
-                      "massi.javascript-docstring",
-                      "ybaumes.highlight-trailing-white-spaces",
-                      "eamodio.gitlens",
-                      "timonwong.shellcheck"
-                    ]
-      }
+    "name": "Leases Licensing",
+    "image": "dbcawa/docker_app_dev:leaseslicensing_dev_latest",
+    "remoteUser": "container",
+    "workspaceFolder": "/data/data/projects/leases-licensing",
+    "mounts": [
+        "type=bind,source=/data/,target=/data/",
+        "type=bind,source=/data/data/containerhome/,target=/home/container/"
+    ],
+    "appPort": [
+        "7008:8080",
+        "9071:9071",
+        "9072:9072",
+        "9073:9073",
+        "9074:9074",
+        "9075:9075",
+        "9076:9076",
+        "9077:9077",
+        "9078:9078",
+        "9079:9079",
+        "9080:9080"
+    ],
+    "runArgs": [
+        "--env-file",
+        "${localEnv:HOME}/vscode-env/leaseslicensing.env",
+        "--hostname",
+        "leaseslicensing-dev"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "vue.volar",
+                "massi.javascript-docstring",
+                "ybaumes.highlight-trailing-white-spaces",
+                "eamodio.gitlens",
+                "timonwong.shellcheck"
+            ]
+        }
     },
-  "forwardPorts": [9071,9072,9073,9074,9075,9076,9077,9078,9079],
-  "initializeCommand": "${localEnv:HOME}/docker-scripts-dev/windows_vbox/postgres_docker_load.sh && ${localEnv:HOME}/docker-scripts-dev/windows_vbox/ledger_docker_load.sh"
+    "forwardPorts": [
+        9071,
+        9072,
+        9073,
+        9074,
+        9075,
+        9076,
+        9077,
+        9078,
+        9079
+    ],
+    "initializeCommand": "${localEnv:HOME}/docker-scripts-dev/windows_vbox/postgres_docker_load_2404_16.sh && ${localEnv:HOME}/docker-scripts-dev/windows_vbox/ledger_docker_load.sh "
 }

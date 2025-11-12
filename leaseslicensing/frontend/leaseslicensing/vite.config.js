@@ -6,7 +6,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgLoader from 'vite-svg-loader';
 
 const applicationNameShort = 'leaseslicensing';
-const port = process.env.PORT ? parseInt(process.env.PORT) : 5173;
+const port = process.env.PORT ? parseInt(process.env.PORT) : 9072;
 const host = process.env.HOST || '0.0.0.0';
 
 export default defineConfig({
@@ -23,7 +23,7 @@ export default defineConfig({
         },
         hmr: {
             protocol: 'ws',
-            host: host,
+            host: 'localhost',
             port: port,
         },
     },

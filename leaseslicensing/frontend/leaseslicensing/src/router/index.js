@@ -1,17 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Account from '@/components/user/account.vue';
-import external_routes from '@/components/external/routes';
-import internal_routes from '@/components/internal/routes';
-
-var NotFoundComponent = null;
+import NotFound from '@/components/NotFound.vue';
+import external_routes from '@/components/external/routes/index.js';
+import internal_routes from '@/components/internal/routes/index.js';
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {
-            path: '/:pathMatch(.*)',
-            component: NotFoundComponent,
-        },
         {
             path: '/firsttime',
             name: 'first-time',
@@ -24,6 +19,11 @@ const router = createRouter({
         },
         external_routes,
         internal_routes,
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'not-found',
+            component: NotFound,
+        },
     ],
 });
 

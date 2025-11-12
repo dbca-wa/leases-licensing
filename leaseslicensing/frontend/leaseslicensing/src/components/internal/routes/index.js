@@ -11,7 +11,7 @@ import ComplianceDash from '@/components/internal/compliances/dashboard.vue';
 import InvoicesDash from '@/components/internal/invoices/dashboard.vue';
 import Search from '@/components/internal/search/dashboard.vue';
 import PersonDetail from '@/components/internal/person/person_detail.vue';
-import Compliance from '../compliances/access.vue';
+import Compliance from '@/components/internal/compliances/access.vue';
 import Approval from '@/components/internal/approvals/approval.vue';
 import CompetitiveProcess from '@/components/internal/competitive_process/competitive_process.vue';
 import ProposalMigrate from '@/components/internal/proposal_migrate.vue';
@@ -21,7 +21,7 @@ export default {
     component: RouterView,
     children: [
         {
-            path: '/internal',
+            path: '',
             component: InternalDashboard,
             name: 'internal-dashboard',
         },

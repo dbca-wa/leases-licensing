@@ -5,11 +5,11 @@ import ExternalReferralProposal from '@/components/internal/proposals/proposal.v
 import ProposalApply from '@/components/external/proposal_apply.vue';
 import ProposalSubmit from '@/components/external/proposal_submit.vue';
 import Organisation from '@/components/external/organisations/manage.vue';
-import Compliance from '../compliances/access.vue';
-import ComplianceSubmit from '../compliances/submit.vue';
-import Approval from '../approvals/approval.vue';
-import ApprovalTransfer from '../approvals/approval_transfer.vue';
-import ApprovalTransferConfirmation from '../approvals/approval_transfer_confirmation.vue';
+import Compliance from '@/components/external/compliances/access.vue';
+import ComplianceSubmit from '@/components/external/compliances/submit.vue';
+import Approval from '@/components/external/approvals/approval.vue';
+import ApprovalTransfer from '@/components/external/approvals/approval_transfer.vue';
+import ApprovalTransferConfirmation from '@/components/external/approvals/approval_transfer_confirmation.vue';
 import InvoicesDash from '@/components/internal/invoices/dashboard.vue';
 import InvoicePaymentSuccess from '@/components/external/invoices/payment_success.vue';
 import InvoicePaymentFailure from '@/components/external/invoices/payment_failure.vue';
@@ -19,7 +19,7 @@ export default {
     component: RouterView,
     children: [
         {
-            path: '/external/',
+            path: '',
             component: ExternalDashboard,
             name: 'external-dashboard',
         },
