@@ -90,7 +90,8 @@ RUN cd /app/leaseslicensing/frontend/leaseslicensing && npm run build && \
 
 # Collect static files
 RUN touch /app/.env && \
-    poetry run python manage.py collectstatic --no-input
+    poetry run python manage.py collectstatic --no-input && \
+    poetry run python manage.py script_hash_indexes --skip-checks
 
 # --- Runtime: clean image with only runtime packages and built artifacts ---
 FROM ${BASE_IMAGE} AS runtime
