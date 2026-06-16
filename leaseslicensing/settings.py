@@ -73,6 +73,7 @@ INSTALLED_APPS += [
     "drf_standardized_errors",
     "ckeditor",
     "django_vite",
+    "wagov_utils.components.sri_utils",
 ]
 
 # Not using django cron
@@ -226,12 +227,8 @@ OTHER_PAYMENT_ALLOWED = env("OTHER_PAYMENT_ALLOWED", False)  # Cash/Cheque
 EMAIL_DELIVERY = env("EMAIL_DELIVERY", "off")
 EMAIL_INSTANCE = env("EMAIL_INSTANCE", "DEV")
 
-GIT_COMMIT_HASH = os.popen(
-    f"cd {BASE_DIR}; git log -1 --format=%H"
-).read()  # noqa: S605
-GIT_COMMIT_DATE = os.popen(
-    f"cd {BASE_DIR}; git log -1 --format=%cd"
-).read()  # noqa: S605
+GIT_COMMIT_HASH = os.popen(f"cd {BASE_DIR}; git log -1 --format=%H").read()  # noqa: S605
+GIT_COMMIT_DATE = os.popen(f"cd {BASE_DIR}; git log -1 --format=%cd").read()  # noqa: S605
 
 APPLICATION_VERSION = project["tool"]["poetry"]["version"] + "-" + GIT_COMMIT_HASH[:7]
 
@@ -678,7 +675,9 @@ DJANGO_VITE = {
     "default": {
         "dev_mode": USE_VITE_DEV_SERVER,
         "dev_server_host": "localhost",  # Default host for vite (can change if needed)
-        "dev_server_port": config("DEV_SERVER_PORT", default=9072, cast=int),  # Default port for vite (can change if needed)
+        "dev_server_port": config(
+            "DEV_SERVER_PORT", default=9072, cast=int
+        ),  # Default port for vite (can change if needed)
         "static_url_prefix": STATIC_URL_PREFIX,
     }
 }

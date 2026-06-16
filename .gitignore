@@ -122,3 +122,7 @@ git_history_recent
 # data files
 *.csv
 *.xls*
+
+# Ignore Subresource Integrity (SRI) manifest and files
+sri-manifest.json
+sri-files/*
