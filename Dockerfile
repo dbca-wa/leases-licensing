@@ -154,6 +154,7 @@ COPY --from=builder --chown=oim:oim /app/leaseslicensing /app/leaseslicensing
 COPY --from=builder --chown=oim:oim /app/staticfiles_ll /app/staticfiles_ll
 COPY --from=builder --chown=oim:oim /app/manage.py /app/manage.py
 COPY --from=builder --chown=oim:oim /app/manage.sh /app/manage.sh
+COPY --from=builder --chown=oim:oim /app/pyproject.toml /app/pyproject.toml
 COPY --from=builder --chown=oim:oim /app/.env /app/.env
 COPY --from=builder --chown=oim:oim /app/sri-manifest.json /app/sri-manifest.json
 COPY --from=builder --chown=oim:oim /app/sri-files /app/sri-files
