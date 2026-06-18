@@ -156,8 +156,9 @@ COPY --from=builder --chown=oim:oim /app/pyproject.toml /app/pyproject.toml
 COPY --from=builder --chown=oim:oim /app/.env /app/.env
 COPY --from=builder --chown=oim:oim /app/sri-manifest.json /app/sri-manifest.json
 COPY --from=builder --chown=oim:oim /app/sri-files /app/sri-files
-COPY --from=builder --chown=oim:oim gunicorn.ini.py python-cron ./
 COPY --from=builder --chown=oim:oim /app/manage.py /app/manage.py
+COPY --chown=oim:oim gunicorn.ini.py python-cron ./
+
 RUN chmod +x /app/manage.py /app/manage.py
 
 EXPOSE 8080
