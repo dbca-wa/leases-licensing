@@ -793,7 +793,7 @@ export default {
             if (turnoverChanges.length == 0) {
                 return '';
             }
-            let changesHtml = '';
+            let changesHtml;
             changesHtml = `<div class="mb-3 float-left">Quarterly Turnover Amounts</div>`;
             changesHtml += '<table class="table table-sm table-striped">';
             changesHtml +=
@@ -838,7 +838,7 @@ export default {
                 return '';
             }
 
-            let changesHtml = '';
+            let changesHtml;
             changesHtml = `<div class="mb-3 float-left">Annual Turnover Estimates</div>`;
             changesHtml += '<table class="table table-sm table-striped">';
             changesHtml +=
@@ -871,7 +871,7 @@ export default {
                 return '';
             }
 
-            let changesHtml = '';
+            let changesHtml;
             changesHtml = `<div class="mb-3 float-left">Annual Turnover Discrepencies</div>`;
             changesHtml += '<table class="table table-sm table-striped">';
             changesHtml +=
@@ -899,7 +899,7 @@ export default {
                 return '';
             }
 
-            let changesHtml = '';
+            let changesHtml;
             changesHtml = `<div class="mb-3 float-left">Annual Turnover Discrepencies</div>`;
             changesHtml += '<table class="table table-sm table-striped">';
             changesHtml +=

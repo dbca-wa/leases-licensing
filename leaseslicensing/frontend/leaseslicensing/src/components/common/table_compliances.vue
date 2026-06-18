@@ -480,7 +480,7 @@ export default {
         },
         compliancesOptions: function () {
             let vm = this;
-            let buttons = [];
+            let buttons;
             buttons = [
                 {
                     extend: 'excel',

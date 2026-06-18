@@ -126,7 +126,7 @@ export default {
                         console.error(error);
                         reject(error);
                     }
-                    let formatted_data = {};
+                    let formatted_data;
                     formatted_data = {
                         postal_address: {
                             postal_line1: data.postal_address.line1,

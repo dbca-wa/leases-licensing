@@ -2194,7 +2194,7 @@ export default {
                 'input[type=text]:required, textarea:required, input[type=checkbox]:required, input[type=radio]:required, input[type=file]:required, select:required'
             );
             all_fields.each(function () {
-                var ele = null;
+                var ele;
                 //check the fields which has assessor boxes.
                 ele = $('[name=' + this.name + '-Assessor]');
                 if (ele.length > 0) {
@@ -2642,8 +2642,8 @@ export default {
         },
         assignTo: async function () {
             let vm = this;
-            let unassign = true;
-            let data = {};
+            let unassign;
+            let data;
             if (this.processing_status == 'With Approver') {
                 unassign =
                     this.proposal.assigned_approver != null &&

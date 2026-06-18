@@ -152,13 +152,13 @@ ENV PATH=$VIRTUAL_ENV/bin:$PATH
 COPY --from=builder --chown=oim:oim /app/.venv /app/.venv
 COPY --from=builder --chown=oim:oim /app/leaseslicensing /app/leaseslicensing
 COPY --from=builder --chown=oim:oim /app/staticfiles_ll /app/staticfiles_ll
-COPY --from=builder --chown=oim:oim /app/manage.py /app/manage.py
-COPY --from=builder --chown=oim:oim /app/manage.sh /app/manage.sh
 COPY --from=builder --chown=oim:oim /app/pyproject.toml /app/pyproject.toml
 COPY --from=builder --chown=oim:oim /app/.env /app/.env
 COPY --from=builder --chown=oim:oim /app/sri-manifest.json /app/sri-manifest.json
 COPY --from=builder --chown=oim:oim /app/sri-files /app/sri-files
-COPY --chown=oim:oim gunicorn.ini.py python-cron ./
+COPY --from=builder --chown=oim:oim gunicorn.ini.py python-cron ./
+COPY --from=builder --chown=oim:oim /app/manage.py /app/manage.py
+RUN chmod +x /app/manage.py /app/manage.py
 
 EXPOSE 8080
 HEALTHCHECK --interval=1m --timeout=5s --start-period=10s --retries=3 CMD ["wget", "-q", "-O", "-", "http://localhost:8080/"]

@@ -311,7 +311,7 @@ export default {
             this.$emit('onChangeGrossTurnoverActual', year.gross_turnover);
         },
         populateFinancialYearsArray: function (financialYearsIncluded) {
-            var financialYear = null;
+            var financialYear;
             var financialYears = [];
 
             for (let i = 0; i < financialYearsIncluded.length; i++) {

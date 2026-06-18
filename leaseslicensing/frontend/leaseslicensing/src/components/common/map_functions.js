@@ -265,7 +265,7 @@ export function polygon_style(feature) {
  */
 export function validateFeature(feature, component_map) {
     let vm = this;
-    let feature_wkt = undefined;
+    let feature_wkt;
     if (feature === undefined) {
         // Get the WKT representation of the currently drawn polygon sketch
         feature_wkt = _helper.featureToWKT.bind(vm)();
@@ -360,7 +360,7 @@ const _helper = {
         }
     },
     isInvertXy: function (layerName) {
-        let map_obj = null;
+        let map_obj;
         if (this.$options.name === 'MapComponentWithFiltersV2') {
             map_obj = this;
         } else {

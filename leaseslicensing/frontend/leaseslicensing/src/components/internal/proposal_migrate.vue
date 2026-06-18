@@ -826,7 +826,7 @@ export default {
         },
         migrateProposal: async function () {
             this.$nextTick(async () => {
-                let res = null;
+                let res;
                 try {
                     this.creatingProposal = true;
                     let payload = {

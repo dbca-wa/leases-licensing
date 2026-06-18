@@ -1089,7 +1089,7 @@ export default {
             return displayable_status_ids;
         },
         absorb_type_difference: function (processing_status_id) {
-            let ret_value = '';
+            let ret_value;
 
             if (Object.hasOwn(processing_status_id, 'ID'))
                 ret_value = processing_status_id.ID;
@@ -1114,7 +1114,7 @@ export default {
             );
 
             all_fields.each(function () {
-                var ele = null;
+                var ele;
                 //check the fields which has assessor boxes.
                 ele = $('[name=' + this.name + '-Assessor]');
                 if (ele.length > 0) {

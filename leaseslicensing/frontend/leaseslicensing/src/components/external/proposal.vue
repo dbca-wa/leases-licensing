@@ -588,7 +588,7 @@ export default {
             this.proposal_readonly = readonly;
         },
         splitText: function (aText) {
-            let newText = '';
+            let newText;
             newText = aText.split('\n');
             return newText;
         },

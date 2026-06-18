@@ -1063,8 +1063,8 @@ export default {
     },
     computed: {
         shapefileDocumentUrl: function () {
-            let endpoint = '';
-            let obj_id = 0;
+            let endpoint;
+            let obj_id;
             if (this.context?.model_name == 'proposal') {
                 endpoint = api_endpoints.proposal;
                 obj_id = this.context.id;

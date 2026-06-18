@@ -30,7 +30,7 @@ import 'currency.js';
 import 'jquery-validation';
 
 import 'sweetalert2/dist/sweetalert2.css';
-import '@dbca/gov-vue3-components/dist/assets/library-DJ5wR63R.css';
+import '@/../node_modules/@dbca/gov-vue3-components/dist/assets/library-DJ5wR63R.css';
 import 'select2/dist/css/select2.min.css';
 import 'select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css';
 

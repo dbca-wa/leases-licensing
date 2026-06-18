@@ -882,7 +882,7 @@ export default {
                         .ID &&
                 current_winner_id != new_winner_id
             ) {
-                let info_text = '';
+                let info_text;
                 current_winner_id == null && new_winner_id != null
                     ? (info_text =
                           'A winner has been selected for this competitive process.')
@@ -1175,7 +1175,7 @@ export default {
         },
         assignTo: async function () {
             let vm = this;
-            let unassign = true;
+            let unassign;
 
             unassign =
                 this.competitive_process.assigned_officer != null &&

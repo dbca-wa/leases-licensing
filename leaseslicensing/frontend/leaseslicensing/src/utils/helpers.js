@@ -59,7 +59,7 @@ export default {
         return returnStr;
     },
     apiError: function (resp) {
-        var error_str = '';
+        var error_str;
         if (resp.status === 400) {
             try {
                 let obj = JSON.parse(resp.responseText);
@@ -76,7 +76,7 @@ export default {
     },
     apiVueResourceError: function (resp) {
         var error_str = '';
-        var text = null;
+        var text;
         if (resp.status === 400) {
             if (Array.isArray(resp.body)) {
                 text = resp.body[0];
@@ -100,8 +100,8 @@ export default {
                     }
                 }
             } else {
-                error_str = text.replace(/[[\]"]/g, '');
-                error_str = text.replace(/^['"](.*)['"]$/, '$1');
+                error_str = text.replace(/[[]"]/g, '');
+                error_str = error_str.replace(/^(['"])([\s\S]*?)\1$/, '$2');
             }
         } else if (resp.status === 404) {
             error_str = 'The resource you are looking for does not exist.';
@@ -291,7 +291,7 @@ export default {
     },
     parseFetchError: async function (response) {
         let errorString = '';
-        let resData = '';
+        let resData;
         try {
             resData = await response.json();
         } catch (error) {

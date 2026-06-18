@@ -238,7 +238,7 @@ export default {
         datatable_options: function () {
             let vm = this;
 
-            let columns = [];
+            let columns;
             columns = [
                 vm.column_id,
                 vm.column_name,

@@ -771,7 +771,7 @@ export default {
                     vm.columnAction,
                 ];
             }
-            let buttons = [];
+            let buttons;
 
             buttons = [
                 {

@@ -1136,7 +1136,7 @@ export default {
                     });
                 })
                 .catch((error) => {
-                    let errorText = '';
+                    let errorText;
                     try {
                         error = JSON.parse(error.message);
                         errorText = helpers.formatErrorV2(error);
