@@ -8,19 +8,19 @@
 # *  *  *  *  * Command
 
 # 5 minutes past the hour every hour
-*/5 * * * * cd /app && ./manage.sh runcrons >> /app/logs/cronjob.log 2>&1
+*/5 * * * * cd /app && ./manage.py runcrons >> /app/logs/cronjob.log 2>&1
 
 # 12:00AM   (Midnight - i.e. Start of the day)
-0 0 * * * cd /app && ./manage.sh midnight_cron >> logs/cronjob.log 2>&1
+0 0 * * * cd /app && ./manage.py midnight_cron >> logs/cronjob.log 2>&1
 
 # 03:00AM   Early Morning (~lowest server load for western australia on average)
-0 3 * * * cd /app && ./manage.sh generate_invoices >> logs/cronjob.log 2>&1
+0 3 * * * cd /app && ./manage.py generate_invoices >> logs/cronjob.log 2>&1
 
 # 08:00AM   Morning
-0 8 * * * cd /app && ./manage.sh morning_cron >> logs/cronjob.log 2>&1
+0 8 * * * cd /app && ./manage.py morning_cron >> logs/cronjob.log 2>&1
 
 # 12:00PM   Noon (30 minutes after the ABS releases CPI data - We run this every day just in case even though the data is only released quarterly)
-0 12 * * * cd /app && ./manage.sh fetch_cpi_data >> logs/cronjob.log 2>&1
+0 12 * * * cd /app && ./manage.py fetch_cpi_data >> logs/cronjob.log 2>&1
 
 # Required for appmonitor_client
-*/5 * * * * cd /app && ./manage.sh runcrons >> logs/cronjob.log 2>&1
+*/5 * * * * cd /app && ./manage.py runcrons >> logs/cronjob.log 2>&1

@@ -80,7 +80,7 @@ COPY --chown=oim:oim pyproject.toml poetry.lock poetry.toml ./
 RUN poetry install --only main --no-interaction --no-ansi
 
 # 2) Copy application code (changes here won't bust the poetry install cache)
-COPY --chown=oim:oim manage.py manage.sh ./
+COPY --chown=oim:oim manage.py ./
 COPY --chown=oim:oim leaseslicensing ./leaseslicensing
 
 # Build Vue frontend, then discard node_modules so they aren't copied to runtime
