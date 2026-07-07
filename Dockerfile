@@ -134,14 +134,7 @@ RUN groupadd -g 5000 oim && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY startup.sh /
-RUN chmod 755 /startup.sh && \
-    chmod +s /startup.sh && \
-    echo "oim  ALL=(ALL)  NOPASSWD: /startup.sh" > /etc/sudoers.d/oim && \
-    wget https://raw.githubusercontent.com/dbca-wa/wagov_utils/main/wagov_utils/bin/default_script_installer.sh \
-        -O /tmp/default_script_installer.sh && \
-    chmod 755 /tmp/default_script_installer.sh && \
-    /tmp/default_script_installer.sh && \
-    rm -rf /tmp/*
+RUN chmod 755 /startup.sh
 
 USER oim
 WORKDIR /app
@@ -160,6 +153,13 @@ COPY --from=builder --chown=oim:oim /app/manage.py /app/manage.py
 COPY --chown=oim:oim gunicorn.ini.py python-cron ./
 
 RUN chmod +x /app/manage.py /app/manage.py
+
+# Cleanup
+USER root
+RUN wget https://raw.githubusercontent.com/dbca-wa/wagov_utils/refs/heads/main/wagov_utils/bin/package_cleanup_2604.sh -O /tmp/package_cleanup_2604.sh
+RUN chmod 755 /tmp/package_cleanup_2604.sh
+RUN /tmp/package_cleanup_2604.sh
+USER oim
 
 EXPOSE 8080
 HEALTHCHECK --interval=1m --timeout=5s --start-period=10s --retries=3 CMD ["wget", "-q", "-O", "-", "http://localhost:8080/"]
